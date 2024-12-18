@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'myapp',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    'django_celery_results'
 ]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,7 +120,7 @@ REST_FRAMEWORK = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Karachi'
 
 USE_I18N = True
 
@@ -134,3 +137,25 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),  # Set the lifetime of the access token
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Set the lifetime of the refresh token
+    'ROTATE_REFRESH_TOKENS': False,                 # Whether to issue a new refresh token with each use
+    'BLACKLIST_AFTER_ROTATION': True,               # Whether to blacklist used refresh tokens
+    'ALGORITHM': 'HS256',                           # Algorithm used to sign the tokens
+    'SIGNING_KEY': SECRET_KEY,                      # Key used to sign the tokens
+    'VERIFYING_KEY': None,                          # Key used to verify the tokens (if needed)
+    'AUTH_HEADER_TYPES': ('Bearer',),               # The type of authorization header
+    'USER_ID_FIELD': 'id',                          # The user field used in the token payload
+    'USER_ID_CLAIM': 'user_id',                     # The key in the token payload for the user ID
+    'TOKEN_TYPE_CLAIM': 'token_type',               # The claim for the token type (access/refresh)
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=30),# Optional sliding token lifetime
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Redis broker URL
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Redis backend
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE='Asia/Karachi'

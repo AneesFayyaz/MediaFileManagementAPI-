@@ -1,0 +1,63 @@
+# Ignore all media files
+media/*
+media/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.svg
+*.mp4
+*.mp3
+*.wav
+*.avi
+*.mkv
+*.mov
+*.pdf
+*.doc
+*.xls
+*.xlsx
+
+# Ignore Python bytecode and cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore virtual environment directories
+venv/*
+.env/*
+.venv/*
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+
+# Ignore local environment files
+.env
+*.env
+*.local
+*.secret
+
+# Ignore IDE and editor-specific files
+.idea/
+.vscode/
+*.iml
+
+# Ignore compiled libraries
+*.so
+*.dll
+*.dylib
+
+# Ignore build and distribution files
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Ignore database files
+*.sqlite3
+*.db
